@@ -1,15 +1,20 @@
 package org.shock.webapp;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 
 public class WebAppWebView extends WebView {
 
     private OnScrollChange onScrollChange;
-    private InjectedChromeClient injectedChromeClient;
+    private InjectedWebChromeClient injectedChromeClient;
+    private InjectedWebViewClient injectedWebViewClient;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public WebAppWebView(Context context) {
         super(context);
@@ -22,8 +27,17 @@ public class WebAppWebView extends WebView {
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setDomStorageEnabled(true);
         addJavascriptInterface(this,"android");
-        injectedChromeClient = new InjectedChromeClient(this);
+        injectedChromeClient = new InjectedWebChromeClient(this);
+        injectedWebViewClient = new InjectedWebViewClient(this,swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(()->{
+            swipeRefreshLayout.setRefreshing(true);
+            WebAppWebView.this.reload();
+        });
         setWebChromeClient(injectedChromeClient);
+        setWebViewClient(injectedWebViewClient);
+    }
+    public void setRefreshLayout(SwipeRefreshLayout swipeRefreshLayout){
+        this.swipeRefreshLayout=swipeRefreshLayout;
     }
     public void injectionJavascript(Object object,String name){
         injectedChromeClient.addJavascriptInterface(object,name);

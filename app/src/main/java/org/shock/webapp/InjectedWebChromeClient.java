@@ -17,12 +17,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InjectedChromeClient extends WebChromeClient {
+public class InjectedWebChromeClient extends WebChromeClient {
     private WebView webView;
     private boolean isInject=false;
     private Map<String, Object> injectInstance = new HashMap<String, Object>();
     private Map<String, Method> injectMethods = new HashMap<String, Method>();
-    public InjectedChromeClient(WebView webView){
+    public InjectedWebChromeClient(WebView webView){
         this.webView=webView;
     }
 
