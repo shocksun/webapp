@@ -16,8 +16,9 @@ public class WebAppWebView extends WebView {
     private InjectedWebViewClient injectedWebViewClient;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    public WebAppWebView(Context context) {
+    public WebAppWebView(Context context,SwipeRefreshLayout swipeRefreshLayout) {
         super(context);
+        this.swipeRefreshLayout=swipeRefreshLayout;
         init();
     }
     private void init(){

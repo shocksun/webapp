@@ -13,12 +13,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SwipeRefreshLayout swipeRefreshLayout = new SwipeRefreshLayout(this);
-        WebAppWebView webView = new WebAppWebView(this);
+        WebAppWebView webView = new WebAppWebView(this,swipeRefreshLayout);
         swipeRefreshLayout.addView(webView);
         setContentView(swipeRefreshLayout);
         webView.setRefreshLayout(swipeRefreshLayout);
         WebAppWebView.setWebContentsDebuggingEnabled(true);
-        webView.injectionJavascript(new TestRunMethod(),"testrun");
-        webView.loadUrl("http://192.168.0.18:5500/index.html");
+        webView.injectionJavascript(new AndroidMethod(this),"androidmethod");
+        webView.loadUrl("http://192.168.1.105:5500/index.html");
     }
 }

@@ -4,10 +4,10 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "org.shock.webapp"
-        minSdkVersion 24
+        minSdkVersion 20
         targetSdkVersion 26
         versionCode 1
-        versionName "bate0.0.1"
+        versionName "bate0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
