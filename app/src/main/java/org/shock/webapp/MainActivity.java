@@ -2,12 +2,7 @@ package org.shock.webapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,11 +11,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         WebAppWebView webView = new WebAppWebView(this);
         setContentView(webView);
+        WebAppWebView.setWebContentsDebuggingEnabled(true);
         webView.injectionJavascript(new TestRunMethod(),"testrun");
-        WebSettings settings = webView.getSettings();
-        settings.setJavaScriptEnabled(true);
-        settings.setUseWideViewPort(true);
-        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        settings.setDomStorageEnabled(true);
+        webView.loadUrl("http://192.168.0.18:5500/index.html");
     }
 }

@@ -1,5 +1,7 @@
 package org.shock.webapp;
 
+import android.webkit.ValueCallback;
+
 public interface JavaScriptFunction {
-    Object callback(Object... obj);
+    void callback(ValueCallback<String> callback,Object... obj);
 }
