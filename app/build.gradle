@@ -7,7 +7,7 @@ android {
         minSdkVersion 20
         targetSdkVersion 26
         versionCode 1
-        versionName "bate0.2"
+        versionName "bate0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
